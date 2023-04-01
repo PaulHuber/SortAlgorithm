@@ -12,7 +12,7 @@ class MinSortListTest {
 		int output = test.square(5);
 		
 		assertEquals(25, output);
-		assertEquals(15, output);
+		//assertEquals(15, output);
 	}
 
 }

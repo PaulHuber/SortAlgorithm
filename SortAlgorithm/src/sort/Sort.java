@@ -8,23 +8,26 @@ public class Sort {
 	public static void printIntArray(int[] toPrint) {
 		System.out.print("(");
 		for(int i=0; i<toPrint.length; i++) {
-			System.out.print(toPrint[i] + ", ");
+			System.out.print(toPrint[i]);
+			if(i<toPrint.length-1)
+				System.out.print(",");
 		}
 		System.out.print(")");
 	}
 	
 	public static void printIntList(List<Integer> toPrint) {
 		System.out.print("(");
-		for(int i=0; i<toPrint.size();i++)
-			System.out.print(toPrint.get(i) + ", ");
-		
+		for(int i=0; i<toPrint.size();i++) {
+			System.out.print(toPrint.get(i));
+			if(i<toPrint.size()-1)
+				System.out.print(",");
+		}
 		System.out.print(")");
 	}
 	
-	
-	public static void sort(int[] input) {
+	//Min Sort/Selection Sort O(n^2)
+	public static int[] minSortIntArray(int[] input) {
 		int swap;
-		printIntArray(input);
 		for(int outer=0; outer < input.length-1; outer++) {
 			for(int inner=outer+1; inner<input.length;inner++) {
 				if(input[outer]>input[inner]) {
@@ -34,12 +37,11 @@ public class Sort {
 				}
 			}
 		}
-		printIntArray(input);
-		
+		return input;		
 	}
-	public static void sort(List<Integer> input) {
+	//Min Sort/Selection Sort O(n^2)
+	public static List<Integer> minSortIntList(List<Integer> input) {
 		int swap;
-		printIntList(input);
 		for(int outer=0; outer<input.size()-1; outer++) {
 			for(int inner=outer+1; inner<input.size(); inner++) {
 				if(input.get(outer)>input.get(inner)) {
@@ -49,13 +51,29 @@ public class Sort {
 				}
 			}
 		}
-		printIntList(input);
-		
+		return input;
 	}
+	
+	
+	public static int[] bubbleSortIntArray(int[] input) {
+		int swap;
+		boolean unsorted = false;
+		do {
+		for(int i=0; i<input.length-1; i=i+2) {
+			if(input[i]>input[i+1]) {
+				swap = input[i];
+				input[i]= input[i+1];
+				input[i+1] = swap;
+				unsorted=true;
+			}
+		}
+		}while(unsorted);
+		return input;
+	}
+	
 	
 	public int square(int x) {
 		return x*x;
-		
 	}
 	
 	
@@ -65,11 +83,14 @@ public class Sort {
 		List<Integer> list = Arrays.asList(10, 50, 20, 15, 5);
 		int[] input = {2,4,6,1,3,8,13,2473,88,4};
 		
+		int[] test = new int[3];
 		
-		sort(input);
+		printIntArray(minSortIntArray(input));
 		System.out.println();
-		sort(list);
+		printIntList(minSortIntList(list));
+		System.out.println();
+		printIntArray(bubbleSortIntArray(input));
 		
-		System.out.println("\nGit Test");
+
 	}
 }
