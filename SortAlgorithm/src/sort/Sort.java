@@ -71,6 +71,17 @@ public class Sort {
 		return input;
 	}
 	
+	public static int nullPinterTest(int[] input) {
+		int a=0;
+		try {
+			a= input[5];
+		} catch (Exception e) {
+			System.out.println("array to short");
+			
+		}
+		
+		return a;
+	}
 	
 	public int square(int x) {
 		return x*x;
@@ -84,6 +95,9 @@ public class Sort {
 		int[] input = {2,4,6,1,3,8,13,2473,88,4};
 		
 		int[] test = new int[3];
+		
+		//int[] nullTest = {1,2};
+		//int a = nullPinterTest(nullTest);
 		
 		printIntArray(minSortIntArray(input));
 		System.out.println();
